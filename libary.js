@@ -21,9 +21,9 @@ ice.collide = function (userX, userY, w, h, map) {
     return(value);
 };
 
-ice.useIceEngine = function () {
-    document.querySelector("body").innerHTML += "<div id='BGMaterial'></div>";
-    document.getElementById("BGMaterial").innerHTML += "<audio></audio>";
+ice.include = function () {
+    document.querySelector("body").innerHTML += "<div id='BGMaterial' style='display: none;'></div>";
+    document.getElementById("BGMaterial").innerHTML += "<canvas id='BGCanvas'></canvas>";
 };
 
 ice.particlesystem = function (ctx, amount, posX, posY, distribution, size) {
@@ -34,4 +34,17 @@ ice.particlesystem = function (ctx, amount, posX, posY, distribution, size) {
     for (var i = 0; i < amount; i++) {
         ctx.fillRect(particles[i].x, particles[i].y, size, size);
     };
+}
+
+ice.newTexture = function (source, cropX, cropY) {
+    let currentTag = document.createElement("img");
+    document.getElementById("BGMaterial").appendChild(currentTag);
+    currentTag.src = source;
+    /*let BGCanvas = document.getElementById("BGCanvas").getContext("2d");
+    BGCanvas.width = parseInt(currentTag.width);
+    BGCanvas.height = parseInt(currentTag.height);
+    BGCanvas.drawImage(currentTag, 0, 0, currentTag.width, currentTag.height);
+    let data = BGCanvas.getImageData(0, 0, cropX, cropY);
+    BGCanvas.putImageData(data, 0, 0, 0, 0, data.width, data.height);*/
+    return(currentTag);
 }
