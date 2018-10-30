@@ -8,6 +8,9 @@ ice.newScene = function (name, parent, w, h) {
     return(canvas);
 };
 
+window.addEventListener("mousemove", getMousePos, false);
+
+
 ice.collide = function (userX, userY, w, h, map) {
     let value;
         for (var i = 0; i <map.length; i++) {
@@ -47,4 +50,14 @@ ice.newTexture = function (source, cropX, cropY) {
     let data = BGCanvas.getImageData(0, 0, cropX, cropY);
     BGCanvas.putImageData(data, 0, 0, 0, 0, data.width, data.height);*/
     return(currentTag);
+};
+
+var mouse = {
+    x: 0,
+    y: 0,
+}
+
+function getMousePos(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
 }

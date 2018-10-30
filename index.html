@@ -76,6 +76,11 @@
             color: #cfcfcf;
             margin: 0px 42%;
         }
+        #canvas {
+            width: 300px;
+            height: 225px;
+            margin: 0px 41%;
+        }
     </style>
 </head>
 <body>
@@ -94,5 +99,48 @@
             It allows basic physics and textures to run easily on the browser.
         </p>
     </div>
+    <div id="scenes"></div>
+    <script src="https://iceengine.github.io/libary.js"></script>
+    <script>
+        var canvas = ice.newScene("canvas", "scenes", 1200, 800);
+        var c = canvas.getContext("2d");
+
+        var data = 'var canvas = ice.newScene("canvas", "scenes", 1200, 800); var c = canvas.getContext("2d");';
+
+        var text = {
+            word: "Hey",
+            color: "white",
+            type: 0
+        }
+
+        function drawText() {
+            c.clearRect(0, 0, 1200, 800);
+            c.fillStyle = "green";
+            c.font = "50px arial";
+            for (var i = 0; i < 16; i++) {
+                if (i === 1 || i === 6|| i === 14) {data = 'document.getElementById("diplay").innerHTML = data;'};
+                if (i === 2 || i === 7|| i === 13) {data = 'var score = 1; function add() {score += 1;};'};
+                if (i === 3 || i === 8|| i === 15) {data = 'var canvas = ice.newScene("canvas", "scenes", 1200, 800); var c = canvas.getContext("2d");'};
+                if (i === 4 || i === 9|| i === 12) {data = 'var el = document.createElement("div"); el.innerHTML = "<p>"+data+"</p>";'};
+                if (i === 5 || i === 10|| i === 11) {data = 'c.clearRect(x, y, 100, 100); x += 1; c.fillRect(x, y, 100, 100);'};
+                c.fillText(data, 0, i * 50);
+            }
+            c.font = "650px arial";
+            c.fillStyle = text.color;
+            c.fillText(text.word, 50, 600);
+            if (text.type === 1) {text.word = "Hey";text.color = "white";};
+            if (text.type === 2) {text.word = "Hey";text.color = "blue";};
+            if (text.type === 3) {text.word = "use";text.color = "white";};
+            if (text.type === 4) {text.word = "use";text.color = "blue";};
+            if (text.type === 5) {text.word = "ICE";text.color = "white";};
+            if (text.type === 6) {text.word = "ICE";text.color = "aqua";};
+            setTimeout(function () {
+                text.type += 1;
+                drawText();
+            }, 1000);
+            if (text.type >= 6) {text.type = 0;}
+        };
+        drawText();
+    </script>
 </body>
 </html>
